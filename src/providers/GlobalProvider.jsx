@@ -1,5 +1,5 @@
 import { TodosContext } from "../contexts/TodoContext"
-import { FilterContext } from "../contexts/filterContext"
+import { FilterContext } from "../contexts/FilterContext"
 import { filterReducer } from "../reducers/filterReducer"
 import { todosReducer } from "../reducers/todoReducer"
 import { useReducer, useEffect } from "react"

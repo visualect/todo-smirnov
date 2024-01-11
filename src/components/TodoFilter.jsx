@@ -1,4 +1,4 @@
-import { FilterContext } from "../contexts/filterContext"
+import { FilterContext } from "../contexts/FilterContext"
 import { useContext } from "react"
 import { changeFilter } from "../reducers/filterReducer"
 

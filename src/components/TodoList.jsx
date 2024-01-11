@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { TodosContext } from "../contexts/TodoContext"
 import TodoItem from "./TodoItem"
-import { FilterContext } from "../contexts/filterContext"
+import { FilterContext } from "../contexts/FilterContext"
 import { useFilteredTodos } from "../hooks/useFilteredTodos"
 
 export default function TodoList() {
