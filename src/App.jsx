@@ -1,15 +1,18 @@
-import { useReducer, useEffect, useState } from 'react'
-import { reducer } from './reducer'
-import { TodosContext } from './context'
+import Layout from './components/Layout'
+import TodoFilter from './components/TodoFilter'
+import TodoForm from './components/TodoForm'
+import TodoList from './components/TodoList'
+import GlobalProvider from './providers/GlobalProvider'
 
 function App() {
-  const [todos, dispatch] = useReducer(reducer, [])
-  const [filter, setFilter] = useState('active')
-
   return (
-    <TodosContext.Provider value={todos}>
-      hello world
-    </TodosContext.Provider>
+    <GlobalProvider>
+      <Layout>
+        <TodoForm />
+        <TodoFilter />
+        <TodoList />
+      </Layout>
+    </GlobalProvider>
   )
 }
 
