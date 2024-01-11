@@ -2,25 +2,18 @@ import { useContext } from "react"
 import { TodosContext } from "../contexts/TodoContext"
 import TodoItem from "./TodoItem"
 import { FilterContext } from "../contexts/filterContext"
+import { useFilteredTodos } from "../hooks/useFilteredTodos"
 
 export default function TodoList() {
     const { todos } = useContext(TodosContext)
     const { filter } = useContext(FilterContext)
 
-    let filteredTodos;
-    if (filter.status === 'active') {
-        filteredTodos = todos.filter(t => !t.completed && !t.deleted)
-    } else if (filter.status === 'completed') {
-        filteredTodos = todos.filter(t => t.completed && !t.deleted)
-    } else {
-        filteredTodos = todos.filter(t => t.deleted)
-    }
-
+    let filteredTodos = useFilteredTodos(todos, filter)
 
     const displayedTodos = filteredTodos.map(t => <TodoItem todoItem={t} key={t.id} />)
 
     return (
-        <ul>
+        <ul className="w-full sm:w-[800px] flex flex-col gap-4">
             {displayedTodos}
         </ul>
     )

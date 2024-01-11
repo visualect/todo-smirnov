@@ -2,7 +2,7 @@ import { TodosContext } from "../contexts/TodoContext"
 import { FilterContext } from "../contexts/filterContext"
 import { filterReducer } from "../reducers/filterReducer"
 import { todosReducer } from "../reducers/todoReducer"
-import { useReducer } from "react"
+import { useReducer, useEffect } from "react"
 
 const initialTodos = [
   {
@@ -27,8 +27,16 @@ const initialTodos = [
 
 
 export default function GlobalProvider({ children }) {
-  const [todos, dispatchTodos] = useReducer(todosReducer, [...initialTodos])
+  const storage = JSON.parse(
+    localStorage.getItem("todos")
+  );
+
+  const [todos, dispatchTodos] = useReducer(todosReducer, storage ?? [...initialTodos])
   const [filter, dispatchFilter] = useReducer(filterReducer, { status: 'active' })
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   return (
     <TodosContext.Provider value={{ todos, dispatchTodos }}>
