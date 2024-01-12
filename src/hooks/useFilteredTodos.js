@@ -9,6 +9,6 @@ export const useFilteredTodos = (todos, filter) => {
         } else {
             return todos.filter(t => t.deleted)
         }
-    });
+    }, [todos, filter] );
     return filteredTodos
 }
